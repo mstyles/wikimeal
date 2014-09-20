@@ -1,0 +1,25 @@
+{
+  "name": "wikimeal",
+  "version": "0.0.0",
+  "description": "meal planner",
+  "main": "index.php",
+  "moduleType": [
+    "globals"
+  ],
+  "authors": [
+    "mstyles"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "moment": "~2.8.3",
+    "fullcalendar": "~2.1.1"
+  }
+}
