@@ -5,13 +5,12 @@ class MealController extends BaseController
     public function mealPicker()
     {
         $meal_ids = $name = DB::table('meals')->lists('id');
-        // var_export($meal_ids); die();
 
         $meal_id = array_rand($meal_ids);
 
         $meal = Meal::findOrFail($meal_ids[$meal_id]);
 
-        $meals = Meal::All();
+        $meals = Meal::All()->toJson();
 
         return View::make('meals')->with('meals', $meals);
     }
@@ -23,9 +22,23 @@ class MealController extends BaseController
         $meal->name = $name;
         $meal->save();
 
+        return $this->allMeals();
+    }
+
+    public function remove()
+    {
+        $id = Input::get('id');
+        $meal = Meal::findOrFail($id);
+        $meal->delete();
+
+        return $this->allMeals();
+    }
+
+    private function allMeals()
+    {
         $meals = Meal::all();
 
-        return View::make('add_meal')->with(array(
+        return View::make('edit')->with(array(
             'meals' => $meals,
         ));
     }
